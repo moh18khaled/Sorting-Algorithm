@@ -16,9 +16,9 @@ void display(int num){
 	while (num>0)
 	{
 		if(num&1)
-		set_bit(PORTB,i);
+		SET_BIT(PORTB,i);
 		else
-		clr_bit(PORTB,i);
+		CLR_BIT(PORTB,i);
 		num>>=1;
 		if(i==2)
 		i=4;
