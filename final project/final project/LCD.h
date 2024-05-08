@@ -12,7 +12,6 @@
 #include "Math.h"
 #include "register.h"
 
-
 #define LCD_data_DDR DDRB
 #define LCD_command_DDR DDRB
 
@@ -22,10 +21,13 @@
 #define RS 3
 #define EN 2
 
+
 void LCD_init(void);
 void LCD_command(unsigned char cmd);
 void LCD_WriteChar(unsigned char chr);
 void LCD_string(unsigned char* str);
 void LCD_clear(void);
+void LCD_Number(int number ,int *c);
+
 
 #endif /* LCD_H_ */
