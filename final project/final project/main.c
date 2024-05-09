@@ -1,74 +1,46 @@
 /*
- * Project.c
+ * main.h
  *
- * Created: 5/6/2024 5:21:34 PM
- * Author : 20103
+ * Created: 3/21/2024 1:24:42 AM
+ *  Author: mohamed khaled
  */ 
 
-#include <avr/io.h>
+
+#include "register.h"
+#include "Math.h"
 #include "LCD.h"
-
-#define F_CPU 8000000UL
-#include <util/delay.h>
-
-
-int len_num(int x){
-	int c=0;
-	while(x>0){
-		x=x/10;
-		c++;
-	}
-    return c;
-}
-
-
-void sortNumbers(int arr[], int n) {
-	int i, j;
-	for (i = 0; i < n-1; i++) {
-		for (j = 0; j < n-i-1; j++) {
-			if (arr[j] > arr[j+1]) {
-				int temp = arr[j];
-				arr[j] = arr[j+1];
-				arr[j+1] = temp;
-			}
-		}
-	}
-}
-
+#include "SevSeg.h"
+#include "KeyPad.h"
+#include "pins.h"
+#include "numbers.h"
 
 int main(void)
 {
-	int cursor_position = 0;
+int arr[20],num=-1,size=0;
 
-	LCD_init();
+keypad_init();
+LCD_init();
 
-	int arr[] = {1000,2000,1189,1804,1183,8881,8401,1881,9829,5888,1880,2588,9999};
-		
-	int n = sizeof(arr)/sizeof(arr[0]);
-	
-	sortNumbers(arr, n);	
-	
-	for (int i = 0 ; i < n ;i++)
-	{
-		int l=len_num(arr[i]);
-			
-		if(cursor_position <= 18 && l > 18-cursor_position){
-		LCD_WriteChar(' ');
-		}
-		if(l > 30-cursor_position ){
-			LCD_clear();
-			_delay_ms(2);
-			cursor_position = 0; 
-			LCD_command(0x80);
+    while (1){
+
+		unsigned char ans=keypad_get_value();
+
+		if(ans=='='){
+			if(num!=-1){
+			//LCD code
+			arr[size++]=num,num=-1;
 			}
-			
-			LCD_Number(arr[i], &cursor_position);
-			LCD_WriteChar(' ');
-			_delay_ms(2000);
 		}
-		
-	while(1){
-		
+		else if(ans=='e'){
+			sort(arr,size);
+			//LCD code
+			separate_num(arr,size);
+			break;
+		}
+		else if(ans!=inva){
+			//LCD code
+			build_num(&num,ans);
+		}
 	}
 }
 
