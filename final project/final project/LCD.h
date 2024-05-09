@@ -9,6 +9,8 @@
 #ifndef LCD_H_
 #define LCD_H_
 
+#define F_CPU 16000000UL
+#include <util/delay.h>
 #include "Math.h"
 #include "register.h"
 
