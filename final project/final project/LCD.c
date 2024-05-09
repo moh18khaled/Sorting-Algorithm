@@ -15,13 +15,13 @@
 
 void LCD_init(void){
 	
-	SET_BIT(DDRA,3);
-	SET_BIT(DDRA,2);
+	SET_BIT(DDRA,p3);
+	SET_BIT(DDRA,p2);
 	
-	SET_BIT(DDRB,0);
-	SET_BIT(DDRB,1);
-	SET_BIT(DDRB,2);
-	SET_BIT(DDRB,4);
+	SET_BIT(DDRB,p0);
+	SET_BIT(DDRB,p1);
+	SET_BIT(DDRB,p2);
+	SET_BIT(DDRB,p4);
 	
 	_delay_ms(15);
 	
@@ -35,26 +35,26 @@ void LCD_init(void){
 }
 void LCD_command(unsigned char cmd){
 	
-	CLR_BIT(PORTA,3);
+	CLR_BIT(PORTA,p3);
 	PORTB&=0b11101000;
 	unsigned char high=((cmd&0xf0)>>4);
 	unsigned char temp=(((high&0b00001000)<<1) | (high&0b00000111));
 	PORTB|=temp;
 	
-	CLR_BIT(PORTA,2);
-	SET_BIT(PORTA,2);
+	CLR_BIT(PORTA,p2);
+	SET_BIT(PORTA,p2);
 	_delay_ms(1);
-	CLR_BIT(PORTA,2);
+	CLR_BIT(PORTA,p2);
 	
 	PORTB&=0b11101000;
 	unsigned char low=((cmd&0x0f));
 	unsigned char temp2=(((low&0b00001000)<<1) | (low&0b00000111));
 	PORTB|=temp2;
 	
-	CLR_BIT(PORTA,2);
-	SET_BIT(PORTA,2);
+	CLR_BIT(PORTA,p2);
+	SET_BIT(PORTA,p2);
 	_delay_ms(1);
-	CLR_BIT(PORTA,2);
+	CLR_BIT(PORTA,p2);
 	
 	_delay_ms(5);
 	
