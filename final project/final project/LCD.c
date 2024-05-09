@@ -5,7 +5,8 @@
  *  Author: mohamed khaled
  */ 
 
-#include <util/delay.h>
+
+
 #include "LCD.h"
 #include "Math.h"
 #include "pins.h"
@@ -14,22 +15,22 @@
 
 void LCD_init(void){
 	
-		SET_BIT(DDRA,3);
-		SET_BIT(DDRA,2);
-		
-		SET_BIT(DDRB,0);
-		SET_BIT(DDRB,1);
-		SET_BIT(DDRB,2);
-		SET_BIT(DDRB,4);
+	SET_BIT(DDRA,3);
+	SET_BIT(DDRA,2);
 	
-		_delay_ms(15);
+	SET_BIT(DDRB,0);
+	SET_BIT(DDRB,1);
+	SET_BIT(DDRB,2);
+	SET_BIT(DDRB,4);
 	
-		LCD_command(0x06);
-		LCD_command(0x02);
-		LCD_command(0x28);
-		LCD_command(0x0c);
-		LCD_command(0x01);
-		LCD_command(0x80);
+	_delay_ms(15);
+	
+	LCD_command(0x06);
+	LCD_command(0x02);
+	LCD_command(0x28);
+	LCD_command(0x0c);
+	LCD_command(0x01);
+	LCD_command(0x80);
 	
 }
 void LCD_command(unsigned char cmd){
@@ -92,8 +93,8 @@ void LCD_string(unsigned char* str){
 }
 
 void LCD_Number(int number , int *c) {
-		LCD_WriteChar(' ');
-		(*c)++;
+	LCD_WriteChar(' ');
+	(*c)++;
 	// Display each digit of the number, ensuring all four digits are shown
 	if (number < 1000) {
 		LCD_WriteChar(' '); // Display a space as a placeholder for thousands digit
@@ -127,5 +128,3 @@ void LCD_Number(int number , int *c) {
 void LCD_clear(void){
 	LCD_command(0x01);
 }
-
-
