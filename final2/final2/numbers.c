@@ -6,8 +6,7 @@
  */ 
 #include "numbers.h"
 #include "timer0.h"
-
-uint8_t g_tick=0;
+extern uint8_t g_tick;
 
 void build_num(int *num, unsigned char ans) {
 	ans -= '0';
@@ -25,7 +24,6 @@ void separate_num(int *arr, int size) {
 	timer0_init();
 
 	while (g_tick != NUMBER_OF_OVERFLOWS) {
-		++g_tick;
 
 		if (!num)
 		goto zero;
