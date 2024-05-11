@@ -5,11 +5,11 @@
  *  Author: mohamed khaled
  */ 
 
-
 #include "timer0.h"
 #include "register.h"
 
 
+extern  uint8_t g_tick=0; // global variable 
 
 void timer0_init(){
 	TCNT0=0;
@@ -19,4 +19,8 @@ void timer0_init(){
 	
 	SET_BIT(SREG,I_BIT);
 
+}
+
+ISR(TIMER0_OVF_vect) { // When Timer0 overflows, the microcontroller automatically jumps to the ISR
+	g_tick++;
 }
