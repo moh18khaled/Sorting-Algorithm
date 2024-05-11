@@ -38,11 +38,11 @@ int main(void)
 			sort(arr,size);
 
 			LCD_Number(arr,size);
-			LCD_clear();
 			
 			_delay_ms(1000);
 			seven_seg_init();
 			separate_num(arr,size);
+			LCD_init();
 			num=-1,size=0;
 			}
 		}
