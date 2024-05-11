@@ -38,14 +38,14 @@ if(pin<3){
 	if(pin == 1)
 		pin+=2;
 		CLR_BIT(PORTA,pin);
-		_delay_us(100); // microsecond 
+		_delay_ms(1);
 		SET_BIT(PORTA,pin);
 	
 }
 else{
 	pin+=2;
 	CLR_BIT(PORTB,pin);
-		_delay_us(100);
+		_delay_ms(1);
 	SET_BIT(PORTB,pin);
 }
 
