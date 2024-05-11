@@ -16,11 +16,10 @@
 
 int main(void)
 {
-const int fixed_size = 20;
-int arr[fixed_size],num=-1,size=0;
-
-keypad_init();
-LCD_init();
+	const int fixed_size = 20;
+	int arr[fixed_size],num=-1,size=0;
+	keypad_init();
+	LCD_init();
 
     while (1){
 
@@ -30,27 +29,25 @@ LCD_init();
 			if(num!=-1){
 				LCD_clear();
 
-			//LCD code
 			arr[size++]=num,num=-1;
 			}
 		}
 		else if(ans=='e'){
 			if(num==-1){
+				
 			sort(arr,size);
-			//LCD code
+
 			LCD_Number(arr,size);
+			LCD_clear();
 			
 			_delay_ms(1000);
 			seven_seg_init();
 			separate_num(arr,size);
-			num=-1,size=0,LCD_clear();
+			num=-1,size=0;
 			}
 		}
 		else if(ans!=inva){
-			//LCD code
-			
 			LCD_WriteChar(ans);
-			
 			build_num(&num,ans);
 		}
 	}
